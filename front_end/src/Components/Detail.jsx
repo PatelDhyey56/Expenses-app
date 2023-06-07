@@ -4,7 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 // import axios from 'axios';
 
-export default function Home({ cus , setEditcus}) {
+export default function Detail({ cus , setEditcus}) {
       const deleteform=(_id)=>{
         if(!window.confirm("Are you sure!!")) return;
         const res =fetch(`http://localhost:8000/login/${_id}`,{
