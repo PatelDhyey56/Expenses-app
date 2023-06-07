@@ -25,4 +25,10 @@ router.post('/', async (req,res)=>{
     }
 })
 
+router.delete('/:id', async(req,res)=>{
+    // console.log(req.params)
+    await Customer.findOneAndDelete({_id:req.params.id})
+    res.json({message:"sucess...."})
+})
+
 export default router

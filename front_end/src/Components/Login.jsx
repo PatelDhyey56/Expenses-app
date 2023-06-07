@@ -1,7 +1,6 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useEffect , useState} from 'react'
 
-export default function Login() {
+export default function Login({ editcus }) {
     const [form, setForm] = useState({
         fname: '',
         lname: '',
@@ -14,6 +13,12 @@ export default function Login() {
             ...form, [e.target.name]: e.target.value
         })
     }
+
+    useEffect(() => {
+        if (editcus !== {})
+            setForm(editcus)
+    }, [editcus])
+
     const submitform = async (e) => {
         e.preventDefault();
         const res = await fetch("http://localhost:8000/login", {
@@ -26,6 +31,7 @@ export default function Login() {
         const data = await res.json()
         console.log(data);
     }
+
     return (
         <div className='m-5'>
             <div className='m-5'>
@@ -47,6 +53,7 @@ export default function Login() {
                                                         className="form-control"
                                                         placeholder="First name"
                                                         aria-label="First name"
+                                                        required
                                                     />
                                                 </div>
                                                 <div className="col">
@@ -59,6 +66,7 @@ export default function Login() {
                                                         className="form-control"
                                                         placeholder="Last name"
                                                         aria-label="Last name"
+                                                        required
                                                     />
                                                 </div>
                                             </div>
@@ -73,6 +81,7 @@ export default function Login() {
                                                 id="exampleInputEmail1"
                                                 className="form-control"
                                                 aria-describedby="emailHelp"
+                                                required
                                             />
                                         </div>
                                         <div className="mb-3">
@@ -84,6 +93,7 @@ export default function Login() {
                                                 placeholder="Password"
                                                 className="form-control"
                                                 id="exampleInputPassword1"
+                                                required
                                             />
                                         </div>
                                         <div className="mb-3">
@@ -95,6 +105,7 @@ export default function Login() {
                                                 placeholder="Repassword"
                                                 className="form-control"
                                                 id="exampleInputrePassword1"
+                                                required
                                             />
                                         </div>
                                         <button type="submit" className="btn btn-primary">
