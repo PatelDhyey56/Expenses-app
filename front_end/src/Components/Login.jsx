@@ -1,13 +1,15 @@
-import React, { useEffect , useState} from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function Login({ editcus }) {
-    const [form, setForm] = useState({
+    const initialform =
+    {
         fname: '',
         lname: '',
-        mail: '',
+        email: '',
         password: '',
         repassword: '',
-    })
+    }
+    const [form, setForm] = useState(initialform)
     const changeform = (e) => {
         setForm({
             ...form, [e.target.name]: e.target.value
@@ -21,6 +23,15 @@ export default function Login({ editcus }) {
 
     const submitform = async (e) => {
         e.preventDefault();
+        const res = editcus.fname === undefined ? create() : update()
+        console.log(res)
+    }
+    function reload(res) {
+        if (res.ok) {
+            setForm(initialform)
+        }
+    }
+    const create = async () => {
         const res = await fetch("http://localhost:8000/login", {
             method: "POST",
             body: JSON.stringify(form),
@@ -30,8 +41,21 @@ export default function Login({ editcus }) {
         })
         const data = await res.json()
         console.log(data);
+        reload(res)
     }
-
+    
+    const update = async () => {
+        const res = await fetch(`http://localhost:8000/login/${editcus._id}`, {
+            method: "PATCH",
+            body: JSON.stringify(form),
+            headers: {
+                'content-type': 'application/json',
+            }
+        })
+        const data = await res.json()
+        console.log(data);
+        reload(res)
+    }
     return (
         <div className='m-5'>
             <div className='m-5'>
@@ -75,7 +99,7 @@ export default function Login({ editcus }) {
                                             <input
                                                 type="email"
                                                 name='mail'
-                                                value={form.mail}
+                                                value={form.email}
                                                 onChange={changeform}
                                                 placeholder="Email"
                                                 id="exampleInputEmail1"
@@ -108,9 +132,18 @@ export default function Login({ editcus }) {
                                                 required
                                             />
                                         </div>
-                                        <button type="submit" className="btn btn-primary">
-                                            Submit
-                                        </button>
+                                        {
+                                            editcus.fname !== undefined &&
+                                            <button type="submit" className="btn btn-primary">
+                                                Update
+                                            </button>
+                                        }
+                                        {
+                                            editcus.fname === undefined &&
+                                            <button type="submit" className="btn btn-primary">
+                                                Submit
+                                            </button>
+                                        }
                                     </form>
 
                                 </div>

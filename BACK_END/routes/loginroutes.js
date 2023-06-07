@@ -27,7 +27,13 @@ router.post('/', async (req,res)=>{
 
 router.delete('/:id', async(req,res)=>{
     // console.log(req.params)
-    await Customer.findOneAndDelete({_id:req.params.id})
+    await Customer.deleteOne({_id:req.params.id})
+    res.json({message:"sucess...."})
+})
+
+router.patch('/:id', async(req,res)=>{
+    // console.log(req.params)
+    await Customer.updateOne({_id : req.params.id},{$set : req.body})
     res.json({message:"sucess...."})
 })
 
