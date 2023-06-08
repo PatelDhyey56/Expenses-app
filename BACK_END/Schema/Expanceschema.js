@@ -11,7 +11,7 @@ const expence_customer = new Schema({
         require:true
     },
     date :{
-        type:String,
+        type:Date,
         require:true
     },
 })
