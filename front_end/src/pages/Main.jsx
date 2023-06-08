@@ -10,7 +10,7 @@ export default function Main() {
 
     useEffect(() => {
         fetchdata()
-    }, [cus])
+    }, [])
 
     const fetchdata = async () => {
         const res = await fetch("http://localhost:8000/login")
@@ -21,8 +21,8 @@ export default function Main() {
     return (
         <div>
             <>
-                <Login editcus={editcus} />
-                <Detail cus={cus} setEditcus={setEditcus} />
+                <Login editcus={editcus} fetchdata={fetchdata}/>
+                <Detail cus={cus} setEditcus={setEditcus} fetchdata={fetchdata}/>
             </>
         </div>
     )

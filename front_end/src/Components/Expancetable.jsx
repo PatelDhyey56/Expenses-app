@@ -5,18 +5,19 @@ import IconButton from '@mui/material/IconButton';
 import dayjs from 'dayjs';
 // import axios from 'axios';
 
-export default function Expancetable({ cusex , setEditcusex }) {
+export default function Expancetable({ cusex , setEditcusex , fetchdata }) {
   const setdate=(date)=>{
     return dayjs(date).format("DD-MMM-YYYY")
   }
-  const deleteform = (_id) => {
+  const deleteform = async(_id) => {
     if (!window.confirm("Are you sure!!")) return;
-    const res = fetch(`http://localhost:8000/expence/${_id}`, {
+    const res = await fetch(`http://localhost:8000/expence/${_id}`, {
       method: "DELETE"
     })
     if (res.ok) {
       window.alert("Deleted...")
       console.log(_id)
+      fetchdata()
     }
   }
   return (

@@ -4,15 +4,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 // import axios from 'axios';
 
-export default function Detail({ cus , setEditcus}) {
-      const deleteform=(_id)=>{
+export default function Detail({ cus , setEditcus , fetchdata}) {
+      const deleteform= async(_id)=>{
         if(!window.confirm("Are you sure!!")) return;
-        const res =fetch(`http://localhost:8000/login/${_id}`,{
+        const res =await fetch(`http://localhost:8000/login/${_id}`,{
           method :"DELETE"
         })
         if(res.ok){
           window.alert("Deleted...")
           console.log(_id)
+          fetchdata()
         }
         
     }

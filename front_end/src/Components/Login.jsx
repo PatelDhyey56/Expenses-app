@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export default function Login({ editcus }) {
+export default function Login({ editcus , fetchdata}) {
     const initialform =
     {
         fname: '',
@@ -29,6 +29,7 @@ export default function Login({ editcus }) {
     function reload(res) {
         if (res.ok) {
             setForm(initialform)
+            fetchdata()
         }
     }
     const create = async () => {
