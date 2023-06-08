@@ -10,6 +10,7 @@ export default function Signupform({ editcus , fetchdata}) {
         repassword: '',
     }
     const [form, setForm] = useState(initialform)
+    
     const changeform = (e) => {
         setForm({
             ...form, [e.target.name]: e.target.value

@@ -25,10 +25,10 @@ router.delete('/:id', async(req,res)=>{
     res.json({message:"sucess...."})
 })
 
-// router.patch('/:id', async(req,res)=>{
-//     // console.log(req.params)
-//     await Customer.updateOne({_id : req.params.id},{$set : req.body})
-//     res.json({message:"sucess...."})
-// })
+router.patch('/:id', async(req,res)=>{
+    // console.log(req.params)
+    await Expancecustomer.updateOne({_id : req.params.id},{$set : req.body})
+    res.json({message:"sucess...."})
+})
 
 export default router
