@@ -1,10 +1,10 @@
-import Login from '../Components/Login';
+import Signupform from '../Components/Signupform';
 import Detail from '../Components/Detail';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 
 
-export default function Main() {
+export default function Login() {
     const [cus, setCus] = useState([])
     const [editcus, setEditcus] = useState({})
 
@@ -21,7 +21,7 @@ export default function Main() {
     return (
         <div>
             <>
-                <Login editcus={editcus} fetchdata={fetchdata}/>
+                <Signupform editcus={editcus} fetchdata={fetchdata}/>
                 <Detail cus={cus} setEditcus={setEditcus} fetchdata={fetchdata}/>
             </>
         </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export default function Login({ editcus , fetchdata}) {
+export default function Signupform({ editcus , fetchdata}) {
     const initialform =
     {
         fname: '',
