@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useState, useEffect } from "react"
 
-export default function Expenceadd({ editcusex, fetchdata }) {
+export default function Expenceadd({ editcusex, fetchdata , setEditcusex }) {
     const initialvalue =
     {
         title: '',
@@ -67,6 +67,7 @@ export default function Expenceadd({ editcusex, fetchdata }) {
         })
         const data = await res.json()
         console.log(data);
+        setEditcusex({})
         reload(res)
     }
     return (

@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <div>
-      <Expenceadd editcusex={editcusex} fetchdata={fetchdata} />
+      <Expenceadd editcusex={editcusex} fetchdata={fetchdata} setEditcusex={setEditcusex} />
       <Expancetable cusex={cusex} setEditcusex={setEditcusex} fetchdata={fetchdata}/>
     </div>
   )

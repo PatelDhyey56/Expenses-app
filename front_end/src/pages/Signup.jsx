@@ -13,7 +13,7 @@ export default function Login() {
     }, [])
 
     const fetchdata = async () => {
-        const res = await fetch("http://localhost:8000/login")
+        const res = await fetch("http://localhost:8000/signup")
         const { data } = await res.json()
         setCus(data)
         // console.log(data)
@@ -21,7 +21,7 @@ export default function Login() {
     return (
         <div>
             <>
-                <Signupform editcus={editcus} fetchdata={fetchdata}/>
+                <Signupform editcus={editcus} fetchdata={fetchdata} setEditcus={setEditcus}/>
                 <Detail cus={cus} setEditcus={setEditcus} fetchdata={fetchdata}/>
             </>
         </div>

@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 export default function Detail({ cus , setEditcus , fetchdata}) {
       const deleteform= async(_id)=>{
         if(!window.confirm("Are you sure!!")) return;
-        const res =await fetch(`http://localhost:8000/login/${_id}`,{
+        const res =await fetch(`http://localhost:8000/signup/${_id}`,{
           method :"DELETE"
         })
         if(res.ok){

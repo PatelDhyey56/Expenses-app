@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export default function Signupform({ editcus , fetchdata}) {
+export default function Signupform({ editcus , fetchdata ,setEditcus}) {
     const initialform =
     {
         fname: '',
@@ -34,7 +34,7 @@ export default function Signupform({ editcus , fetchdata}) {
         }
     }
     const create = async () => {
-        const res = await fetch("http://localhost:8000/login", {
+        const res = await fetch("http://localhost:8000/signup", {
             method: "POST",
             body: JSON.stringify(form),
             headers: {
@@ -47,7 +47,7 @@ export default function Signupform({ editcus , fetchdata}) {
     }
     
     const update = async () => {
-        const res = await fetch(`http://localhost:8000/login/${editcus._id}`, {
+        const res = await fetch(`http://localhost:8000/signup/${editcus._id}`, {
             method: "PATCH",
             body: JSON.stringify(form),
             headers: {
@@ -56,6 +56,7 @@ export default function Signupform({ editcus , fetchdata}) {
         })
         const data = await res.json()
         console.log(data);
+        setEditcus({})
         reload(res)
     }
     return (
@@ -100,7 +101,7 @@ export default function Signupform({ editcus , fetchdata}) {
                                         <div className="mb-3">
                                             <input
                                                 type="email"
-                                                name='mail'
+                                                name='email'
                                                 value={form.email}
                                                 onChange={changeform}
                                                 placeholder="Email"

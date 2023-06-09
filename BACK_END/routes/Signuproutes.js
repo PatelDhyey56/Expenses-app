@@ -1,5 +1,5 @@
 import { Router } from "express"
-import Customer from '../Schema/Loginschema.js'
+import Customer from '../Schema/Signupschema.js'
 
 const router =Router()
 
@@ -8,10 +8,10 @@ router.get('/',async(req,res)=>{
     res.json({data:register})
 })
 router.post('/', async (req,res)=>{
-    const { fname , lname , mail , password , repassword} =req.body
+    const { fname , lname , email , password , repassword} =req.body
     if(password===repassword){
         const customer = new Customer({
-            email:mail,
+            email:email,
             fname:fname,
             lname:lname,
             password:password,

@@ -2,7 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import bodyParser from 'body-parser'
-import loginroute from '../routes/loginroutes.js'
+import signuproute from '../routes/Signuproutes.js'
 import expenceroutes from '../routes/Expenceroutes.js'
 
 const port=8000
@@ -15,7 +15,7 @@ app.get('/',(req,res)=>{
     res.send("hii")
 })
 
-app.use('/login',loginroute)
+app.use('/signup',signuproute)
 app.use('/expence',expenceroutes)
 
 app.listen(port,()=>{
