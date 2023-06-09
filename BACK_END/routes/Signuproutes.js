@@ -7,6 +7,14 @@ router.get('/',async(req,res)=>{
     const register = await Customer.find({})
     res.json({data:register})
 })
+router.get('/login',async(req,res)=>{
+    const {email} =req.body
+    const register = await Customer.findOne({ email })
+    if(register){
+        res.status(406).json({message:"not a user..."})
+    }
+    res.json({data:register})
+})
 router.post('/', async (req,res)=>{
     const { fname , lname , email , password , repassword} =req.body
     if(password===repassword){
