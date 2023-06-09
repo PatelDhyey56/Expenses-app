@@ -22,7 +22,7 @@ export default function Login() {
         <div>
             <>
                 <Signupform editcus={editcus} fetchdata={fetchdata} setEditcus={setEditcus}/>
-                <Detail cus={cus} setEditcus={setEditcus} fetchdata={fetchdata}/>
+                {/* <Detail cus={cus} setEditcus={setEditcus} fetchdata={fetchdata}/> */}
             </>
         </div>
     )
