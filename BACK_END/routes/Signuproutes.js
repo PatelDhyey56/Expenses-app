@@ -1,5 +1,6 @@
 import { Router } from "express"
 import Customer from '../Schema/Signupschema.js'
+import jwt from "jsonwebtoken"
 
 const router =Router()
 
@@ -7,13 +8,26 @@ router.get('/',async(req,res)=>{
     const register = await Customer.find({})
     res.json({data:register})
 })
-router.get('/login',async(req,res)=>{
-    const {email} =req.body
+router.post('/login',async(req,res)=>{
+    const { email , password} =req.body
     const register = await Customer.findOne({ email })
-    if(register){
-        res.status(406).json({message:"not a user..."})
+    if(!register){
+        res.status(406).json({message:"User not exiest..."})
     }
-    res.json({data:register})
+    // console.log(register.password)
+    // const checkpass =register.password
+    // if(!(checkpass === password)){
+    //     res.status(406).json({message:"User exiest but password not matched..."})
+    // }
+    else{
+
+        const payload ={
+            name:email,
+        }
+        const token =jwt.sign(payload,'secret')
+        // console.log(token)
+        res.json({message:"user exiest" , token})
+    }
 })
 router.post('/', async (req,res)=>{
     const { fname , lname , email , password , repassword} =req.body

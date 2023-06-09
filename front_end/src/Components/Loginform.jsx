@@ -1,12 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
+import Cookies from "js-cookie"
 
 export default function Loginform() {
     const initialform =
     {
         email: '',
         password: '',
-        repassword: '',
     }
     const [loginform, setLoginorm] = useState(initialform)
 
@@ -15,8 +15,24 @@ export default function Loginform() {
             ...loginform, [e.target.name]: e.target.value
         })
     }
-    const submitform = () => {
-
+    const submitform = async(e) => {
+        e.preventDefault()
+        const res = await fetch("http://localhost:8000/signup/login", {
+            method: "POST",
+            body: JSON.stringify(loginform),
+            headers: {
+                'content-type': 'application/json',
+            }
+        })
+        const {token} =await res.json()
+        if(res.ok){
+            Cookies.set('token',token)
+            console.log("successfully login...")
+        }
+        else{
+            console.log("invalid......")
+        }
+        setLoginorm(initialform)
     }
     return (
         <div>
@@ -66,7 +82,6 @@ export default function Loginform() {
                     </div>
                 </div>
             </div>
-            )
         </div>
     )
 }
