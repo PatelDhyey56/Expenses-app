@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
 import Cookies from "js-cookie"
+import {useNavigate} from "react-router-dom"
 
 export default function Loginform() {
+    const navigate =useNavigate()
     const initialform =
     {
         email: '',
@@ -28,9 +30,11 @@ export default function Loginform() {
         if(res.ok){
             Cookies.set('token',token)
             console.log("successfully login...")
+            navigate('/')
         }
         else{
             console.log("invalid......")
+            window.alert("invalid details...")
         }
         setLoginorm(initialform)
     }

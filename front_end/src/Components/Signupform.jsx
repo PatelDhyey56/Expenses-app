@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from "react-router-dom"
 
-export default function Signupform({ editcus , fetchdata ,setEditcus}) {
+export default function Signupform({ editcus, fetchdata, setEditcus }) {
+    const navigate = useNavigate()
     const initialform =
     {
         fname: '',
@@ -10,7 +12,7 @@ export default function Signupform({ editcus , fetchdata ,setEditcus}) {
         repassword: '',
     }
     const [form, setForm] = useState(initialform)
-    
+
     const changeform = (e) => {
         setForm({
             ...form, [e.target.name]: e.target.value
@@ -29,23 +31,30 @@ export default function Signupform({ editcus , fetchdata ,setEditcus}) {
     }
     function reload(res) {
         if (res.ok) {
+            navigate('/login')
             setForm(initialform)
             fetchdata()
         }
     }
     const create = async () => {
-        const res = await fetch("http://localhost:8000/signup", {
-            method: "POST",
-            body: JSON.stringify(form),
-            headers: {
-                'content-type': 'application/json',
-            }
-        })
-        const data = await res.json()
-        console.log(data);
-        reload(res)
+        if (form.password === form.repassword) {
+            const res = await fetch("http://localhost:8000/signup", {
+                method: "POST",
+                body: JSON.stringify(form),
+                headers: {
+                    'content-type': 'application/json',
+                }
+            })
+            const data = await res.json()
+            console.log(data);
+            reload(res)
+        }
+        else{
+            window.alert("plese enter valid details......")
+            setForm(initialform)
+        }
     }
-    
+
     const update = async () => {
         const res = await fetch(`http://localhost:8000/signup/${editcus._id}`, {
             method: "PATCH",

@@ -10,6 +10,9 @@ import {
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Home from './pages/Home'
+import Cookies from "js-cookie"
+
+const token =Cookies.get('token')
 
 const router = createBrowserRouter([
   {
@@ -18,7 +21,7 @@ const router = createBrowserRouter([
     children :[
       {
         path:"/",
-        element: <Home />,
+        element:token ? <Home />:<Signup />,
       },
       {
         path:"/Signup",
