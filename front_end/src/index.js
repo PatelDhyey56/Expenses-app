@@ -10,6 +10,7 @@ import {
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Home from './pages/Home'
+import Account from './pages/Account';
 import Cookies from "js-cookie"
 
 const token =Cookies.get('token')
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path:"/login",
         element: <Login />,
+      },
+      {
+        path:"/account",
+        element: <Account />,
       },
     ]
   },

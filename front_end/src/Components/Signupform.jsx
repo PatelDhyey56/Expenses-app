@@ -134,7 +134,7 @@ export default function Signupform({ editcus, fetchdata, setEditcus }) {
                                         </div>
                                         <div className="mb-3">
                                             <input
-                                                type="repassword"
+                                                type="password"
                                                 name='repassword'
                                                 value={form.repassword}
                                                 onChange={changeform}
