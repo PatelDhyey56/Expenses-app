@@ -46,10 +46,11 @@ export default function Expenceadd({ editcusex, fetchdata, setEditcusex }) {
         }
     }
     const create = async () => {
-        if ( value.length === 0 ){
-            alert("empty ") ; 
-            return ; 
+        if (value.title === undefined || value.price === undefined || value.title === initialvalue.title || value.price === initialvalue.price) {
+            window.alert(" plese enter value in text field!!")
         }
+
+        else {
             const res = await fetch("http://localhost:8000/expence", {
                 method: "POST",
                 body: JSON.stringify(value),
@@ -57,9 +58,10 @@ export default function Expenceadd({ editcusex, fetchdata, setEditcusex }) {
                     'content-type': 'application/json',
                 }
             })
-        const data = await res.json()
-        console.log(data);
-        reload(res)
+            const data = await res.json()
+            console.log(data);
+            reload(res)
+        }
     }
 
     const update = async () => {
