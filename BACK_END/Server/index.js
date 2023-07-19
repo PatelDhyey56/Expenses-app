@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 import signuproute from '../routes/Signuproutes.js'
 import expenceroutes from '../routes/Expenceroutes.js'
 
+
 const port=8000
 const app=express()
 app.use(cors())
@@ -23,9 +24,9 @@ app.listen(port,()=>{
 })
 
 main().catch(err => console.log(err));
-    
+
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/expensess')
+    await mongoose.connect("mongodb+srv://pateldhyey:dhyey-123@cluster0.ztvjzgg.mongodb.net/customerDB")
     .then(()=>{
         console.log("connected...")
     })

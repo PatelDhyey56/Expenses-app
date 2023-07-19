@@ -4,7 +4,7 @@ export function connect(){
     main().catch(err => console.log("hii"));
 }
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/expensess')
+    await mongoose.connect("mongodb+srv://pateldhyey:dhyey-123@cluster0.ztvjzgg.mongodb.net/customerDB")
     .then(()=>{
         console.log("connected...")
     })
